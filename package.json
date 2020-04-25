@@ -1,0 +1,17 @@
+{
+  "name": "@nuuji/sudoku",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:nuuji/sudoku.git",
+  "author": "Dan Nash <dan@nuuji.tech>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "printExercise": "node scripts/printExercise.js"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}
