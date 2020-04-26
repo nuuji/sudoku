@@ -53,7 +53,7 @@ module.exports = class Cell {
     }
 
     entryValid(value) {
-        return ![
+        return this.empty() && ![
             this.col(),
             this.row(),
             this.square()

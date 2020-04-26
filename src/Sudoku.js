@@ -141,7 +141,7 @@ module.exports = class Sudoku {
             const cells = set instanceof Square ? set.flat() : set.cells;
 
             for (const mval of missing) {
-                const validCellsForEntry = cells.filter(cell => cell.empty() && cell.entryValid(mval));
+                const validCellsForEntry = cells.filter(cell => cell.entryValid(mval));
                 if (validCellsForEntry.length == 1) {
                     validCellsForEntry.pop().value = mval;
                     valueFound = true;

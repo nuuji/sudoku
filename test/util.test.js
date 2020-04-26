@@ -2,6 +2,7 @@ const {
     range,
     containsAll,
     matrix,
+    shuffle,
 } = require('../src/util');
 
 describe('utils', () => {
@@ -81,6 +82,20 @@ describe('utils', () => {
                 const matrixSize = [...matrix(x, y)].length;
                 expect(matrixSize).toBe(x * y);
             });
+        });
+    });
+
+    describe('shuffle()', () => {
+        it('it random enough in array shuffling', () => {
+            const original = [1, 2, 3, 4, 5, 6, 7, 8];
+            const shuffledResults = [original];
+
+            for (let i = 0; i < 20; i++) {
+                const shuffled = shuffle(original);
+                // Should be different to all the other results so far
+                shuffledResults.forEach(otherShuffled => expect(otherShuffled).not.toEqual(shuffled));
+                shuffledResults.push(shuffled);
+            }
         });
     });
 });

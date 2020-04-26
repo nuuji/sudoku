@@ -5,7 +5,7 @@ if (!EXERCISE) throw new Error('Usage: `yarn start basic` (where `basic` is an e
 // Load the exercise to solve
 const grid = require(`../exercises/${EXERCISE}.js`);
 
-new (require('./Sudoku'))(grid).solve();
+new (require('../src/Sudoku'))(grid).solve();
 
 // Any rows, cols or squares containing n - 1 of n missing items
 // middle set of squares, 2 9s example

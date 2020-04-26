@@ -23,8 +23,37 @@ function *matrix(y, x) {
     }
 }
 
+/**
+ * Randomise the order of an array
+ */
+const shuffle = arr => arr
+    .map(val => ({ val, sort: Math.random() }))
+    .sort((a, b) => Math.sign(a.sort - b.sort))
+    .map(item => item.val);
+
+/**
+ * Pesudorandom array value picker
+ */
+const randomValue = arr => arr[Math.floor(Math.random() * arr.length)];
+
+/**
+ * Rotate elements backwards in an array
+ * @param {any[]} arr to rotate
+ * @param {number} places to rotate by
+ */
+const rotate = (arr, places) => [...arr.slice(places), ...arr.slice(0, places)];
+
+/**
+ * Pesudorandom boolean generator
+ */
+const randomBool = () => Math.random() > .5;
+
 module.exports = {
     range,
     containsAll,
     matrix,
+    shuffle,
+    randomValue,
+    rotate,
+    randomBool,
 };
