@@ -1,6 +1,6 @@
 # nuuji/sudoku 🔢 - Solve / generate sudoku puzzles
 
-## Solving Exercises 
+## Solving Exercises
 
 Simply `yarn solve <exercise>` where `<exercise>` is one of the `.js` files in the `exercises/` directory.
 
@@ -11,3 +11,7 @@ Simply `yarn solve <exercise>` where `<exercise>` is one of the `.js` files in t
 ## Testing
 
 `yarn test` will run the test suite using `jest`.
+
+### Potential Ideas
+
+- Sudoku but every person sees only a portion of the board!!! (team building exercise lol)

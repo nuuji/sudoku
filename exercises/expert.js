@@ -1,3 +1,4 @@
+/* eslint-disable */
 const E = null;
 
 module.exports = [

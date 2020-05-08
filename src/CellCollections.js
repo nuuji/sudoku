@@ -1,29 +1,29 @@
-const { range, matrix } = require('./util');
+const { range, matrix } = require("./util");
 
 class CellCollection {
-    constructor(cells) {
-        this.cells = cells;
-    }
+  constructor(cells) {
+    this.cells = cells;
 
-    includes(value) {
-        return this.cells.some(cell => cell.is(value));
-    }
+    this[Symbol.iterator] = this.iterate;
+  }
 
-    missing() {
-        return range(1, 10).filter(val => !this.includes(val));
-    }
+  includes(value) {
+    return this.cells.some((cell) => cell.is(value));
+  }
 
-    toString() {
-        return `[${this.cells.join(', ')}]`;
-    }
+  missing() {
+    return range(1, 10).filter((val) => !this.includes(val));
+  }
 
-    *iterate() {
-        for (const cell of this.cells) {
-            yield cell;
-        }
-    }
+  toString() {
+    return `[${this.cells.join(", ")}]`;
+  }
 
-    [Symbol.iterator] = this.iterate;
+  *iterate() {
+    for (const cell of this.cells) {
+      yield cell;
+    }
+  }
 }
 
 class Row extends CellCollection {}
@@ -31,42 +31,42 @@ class Row extends CellCollection {}
 class Col extends CellCollection {}
 
 class Square extends CellCollection {
-    constructor(cells, squareX, squareY) {
-        if (cells.some(cell => !Array.isArray(cell))) {
-            throw new Error(
-                'Square should be constructed with an n * n matrix (eg. an array containing 3 arrays of 3 cells)'
-            );
-        }
-
-        super(cells);
-        this.squareX = squareX;
-        this.squareY = squareY;
+  constructor(cells, squareX, squareY) {
+    if (cells.some((cell) => !Array.isArray(cell))) {
+      throw new Error(
+        "Square should be constructed with an n * n matrix (eg. an array containing 3 arrays of 3 cells)"
+      );
     }
 
-    includes(value) {
-        return this.flat().some(cell => cell.is(value));
-    }
+    super(cells);
+    this.squareX = squareX;
+    this.squareY = squareY;
+  }
 
-    flat() {
-        return this.cells.flat();
-    }
+  includes(value) {
+    return this.flat().some((cell) => cell.is(value));
+  }
 
-    toString() {
-        this.cells.map(row => `[${row.join(', ')}]`).join(',\n');
-    }
+  flat() {
+    return this.cells.flat();
+  }
 
-    *iterate() {
-        const matrixSize = this.cells.length;
+  toString() {
+    this.cells.map((row) => `[${row.join(", ")}]`).join(",\n");
+  }
 
-        for (const [x, y] of matrix(matrixSize, matrixSize)) {
-            yield this.cells[y][x];
-        }
+  *iterate() {
+    const matrixSize = this.cells.length;
+
+    for (const [x, y] of matrix(matrixSize, matrixSize)) {
+      yield this.cells[y][x];
     }
+  }
 }
 
 module.exports = {
-    CellCollection,
-    Row,
-    Col,
-    Square,
-}
+  CellCollection,
+  Row,
+  Col,
+  Square,
+};
